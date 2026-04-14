@@ -49,7 +49,7 @@ class Database:
             conn.commit()
             rows_affected = cursor.rowcount
             conn.close()
-
+            
             return rows_affected > 0
 
         except sqlite3.IntegrityError as e:
@@ -57,6 +57,7 @@ class Database:
         except sqlite3.Error as e:
             print(f"Database Error: {e}")
             return False
+
 
 
     def GetTasks(self):
@@ -120,5 +121,6 @@ if __name__ == "__main__":
     print(id)
 
     test_db.RemoveTask(id)
+    print(str(test_db.GetTasks()))
 
     print("Done")

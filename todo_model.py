@@ -45,7 +45,13 @@ class TaskListModel:
 
 
     def RemoveTask(self, id):
-        pass
+        try:
+            result = self.__db.RemoveTask(id)
+            self.LoadData()
+            return True
+        except Exception as e:
+            print(str(e))
+            return False
         # Use a try/except clause here (except a general exception)
         # should remove the task by the passed in ID in both the local model data
         # and the sqlite data.  Return true if the removal from both places is 
@@ -56,6 +62,9 @@ if __name__ == "__main__":
     db = Database("todo_test.db")
     test_model = TaskListModel(db, True)
     test_model.AddTask("Clean the Bathroom", "It's getting filthy!")
+    print(str(test_model.GetData()))
+    test_model.RemoveTask(1)
+    print(str(test_model.GetData()))
 
     print("Done")
 
