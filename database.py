@@ -53,7 +53,6 @@ class Database:
             return rows_affected > 0
 
         except sqlite3.IntegrityError as e:
-            print("sf")
             return False
         except sqlite3.Error as e:
             print(f"Database Error: {e}")

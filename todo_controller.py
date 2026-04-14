@@ -8,6 +8,7 @@ class SimpleToDoView(BoxLayout):
     layoutTasks = ObjectProperty()
     new_task_title = StringProperty("")
     new_task_desc = StringProperty("")
+    task_ID = StringProperty("")
     # Hint: Add a new property to connect to the front end for the ID
     #       used in the removal command.
 
@@ -35,7 +36,9 @@ class SimpleToDoView(BoxLayout):
 
     
     # Add a method to be called when the user initiates a delete command.
+    def on_click_delete_task(self):
+        self.__model.RemoveTask(self.task_ID)
+        self.load_records()
         
-    
 Builder.load_file("todo_view.kv")
 
